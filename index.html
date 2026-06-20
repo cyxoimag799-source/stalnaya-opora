@@ -314,7 +314,6 @@
             color: #0b0b0b;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -546,88 +545,34 @@
         }
 
         @media (max-width: 768px) {
-            .header-inner {
-                flex-direction: column;
-                gap: 15px;
-            }
-            nav a {
-                margin: 0 12px;
-                font-size: 14px;
-            }
-            .hero-text h1 {
-                font-size: 34px;
-            }
-            .hero {
-                padding: 50px 0 60px;
-            }
-            .hero-text {
-                padding: 25px 20px;
-            }
-            .hero::after {
-                font-size: 40px;
-                right: 10px;
-                bottom: 10px;
-            }
-            .hero-graphic .circle-bg {
-                width: 200px;
-                height: 200px;
-            }
-            .hero-graphic .circle-bg .icon-big {
-                font-size: 70px;
-            }
+            .header-inner { flex-direction: column; gap: 15px; }
+            nav a { margin: 0 12px; font-size: 14px; }
+            .hero-text h1 { font-size: 34px; }
+            .hero { padding: 50px 0 60px; }
+            .hero-text { padding: 25px 20px; }
+            .hero::after { font-size: 40px; right: 10px; bottom: 10px; }
+            .hero-graphic .circle-bg { width: 200px; height: 200px; }
+            .hero-graphic .circle-bg .icon-big { font-size: 70px; }
             .hero-graphic .ring-1 { width: 180px; height: 180px; }
             .hero-graphic .ring-2 { width: 240px; height: 240px; }
             .hero-graphic .ring-3 { width: 120px; height: 120px; }
-            .section-title {
-                font-size: 28px;
-            }
-            .services-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .about-grid {
-                flex-direction: column;
-            }
-            .contacts-grid {
-                flex-direction: column;
-            }
-            .phone-header small {
-                text-align: center;
-            }
-            .modal {
-                padding: 30px 20px;
-            }
-            .about-graphic .big-icon {
-                font-size: 60px;
-            }
-            .about-graphic {
-                min-height: 200px;
-            }
+            .section-title { font-size: 28px; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .about-grid { flex-direction: column; }
+            .contacts-grid { flex-direction: column; }
+            .phone-header small { text-align: center; }
+            .modal { padding: 30px 20px; }
+            .about-graphic .big-icon { font-size: 60px; }
+            .about-graphic { min-height: 200px; }
         }
         @media (max-width: 480px) {
-            .logo {
-                font-size: 22px;
-            }
-            nav a {
-                font-size: 13px;
-                margin: 0 8px;
-            }
-            .hero-text h1 {
-                font-size: 28px;
-            }
-            .btn {
-                padding: 12px 28px;
-                font-size: 16px;
-            }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-graphic .circle-bg {
-                width: 160px;
-                height: 160px;
-            }
-            .hero-graphic .circle-bg .icon-big {
-                font-size: 50px;
-            }
+            .logo { font-size: 22px; }
+            nav a { font-size: 13px; margin: 0 8px; }
+            .hero-text h1 { font-size: 28px; }
+            .btn { padding: 12px 28px; font-size: 16px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .hero-graphic .circle-bg { width: 160px; height: 160px; }
+            .hero-graphic .circle-bg .icon-big { font-size: 50px; }
             .hero-graphic .ring-1 { width: 140px; height: 140px; }
             .hero-graphic .ring-2 { width: 190px; height: 190px; }
             .hero-graphic .ring-3 { width: 100px; height: 100px; }
@@ -778,7 +723,6 @@
         </div>
     </footer>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modalContent">
             <button class="modal-close" onclick="closeModal()">✕</button>
@@ -787,9 +731,6 @@
     </div>
 
     <script>
-        // ===== НАСТРОЙКА ПОЧТЫ =====
-        const TO_EMAIL = 'StalnayaOpora@ya.ru';
-
         // ===== ДАННЫЕ ДЛЯ МОДАЛЬНЫХ ОКОН =====
         const modalData = {
             fences: {
@@ -858,7 +799,7 @@
             let html = `
                 <h2>${data.title} <span>▸ заявка</span></h2>
                 <p class="modal-sub">${data.subtitle}</p>
-                <form id="modalForm" onsubmit="submitModalForm(event, '${type}')">
+                <form id="modalForm" onsubmit="sendForm(event, '${type}')">
             `;
 
             data.fields.forEach(field => {
@@ -867,108 +808,4 @@
                 html += `<label for="${field.id}">${field.label}${required}</label>`;
 
                 if (field.type === 'select') {
-                    html += `<select id="${field.id}" ${field.required ? 'required' : ''}>`;
-                    html += `<option value="">— Выберите —</option>`;
-                    field.options.forEach(opt => {
-                        html += `<option value="${opt}">${opt}</option>`;
-                    });
-                    html += `</select>`;
-                } else {
-                    html += `<input type="${field.type}" id="${field.id}" placeholder="${field.placeholder || ''}" ${field.required ? 'required' : ''}>`;
-                }
-
-                html += `</div>`;
-            });
-
-            html += `
-                    <button type="submit" class="btn btn-submit">📩 Отправить заявку</button>
-                </form>
-                <p style="color:#666; font-size:13px; margin-top:15px; text-align:center;">Наш менеджер свяжется с вами в ближайшее время</p>
-            `;
-
-            body.innerHTML = html;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // ===== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО =====
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // ===== ОТПРАВКА ИЗ МОДАЛЬНОГО ОКНА =====
-        function submitModalForm(event, type) {
-            event.preventDefault();
-
-            const form = event.target;
-            const formData = new FormData(form);
-            const data = {};
-
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-
-            const serviceNames = {
-                fences: 'Забор',
-                ogradki: 'Оградки',
-                navesy: 'Автонавес',
-                lestnicy: 'Лестница',
-                dush: 'Дачный душ',
-                svarka: 'Сварочные работы'
-            };
-            data.service = serviceNames[type] || type;
-
-            // Отправляем на почту
-            sendToEmail(data);
-
-            closeModal();
-            alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        }
-
-        // ===== ОТПРАВКА ИЗ ФОРМЫ В КОНТАКТАХ =====
-        function sendContactForm(event) {
-            event.preventDefault();
-
-            const data = {
-                service: 'Общая заявка с сайта',
-                name: document.getElementById('contactName').value,
-                phone: document.getElementById('contactPhone').value,
-                city: document.getElementById('contactCity').value || 'Не указан',
-                comment: document.getElementById('contactComment').value || 'Без комментария'
-            };
-
-            sendToEmail(data);
-            document.getElementById('contactForm').reset();
-            alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
-        }
-
-        // ===== УНИВЕРСАЛЬНАЯ ОТПРАВКА НА ПОЧТУ =====
-        function sendToEmail(data) {
-            const subject = encodeURIComponent('Новая заявка с сайта Стальная Опора');
-            
-            let message = '';
-            for (let [key, value] of Object.entries(data)) {
-                message += `${key}: ${value}\n`;
-            }
-
-            const body = encodeURIComponent(message);
-            const mailtoLink = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
-
-            // Открываем почтовый клиент
-            window.location.href = mailtoLink;
-        }
-
-        // ===== ЗАКРЫТИЕ ПО ESC =====
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ===== ЗАКРЫТИЕ ПО КЛИКУ НА ОВЕРЛЕЙ =====
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-    </script>
-
-</body>
-</html>
+                    html += `<select id="${field.id}" ${field.required ?
