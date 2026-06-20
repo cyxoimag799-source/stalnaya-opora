@@ -799,7 +799,7 @@
             let html = `
                 <h2>${data.title} <span>▸ заявка</span></h2>
                 <p class="modal-sub">${data.subtitle}</p>
-                <form id="modalForm" onsubmit="sendForm(event, '${type}')">
+                <form onsubmit="sendForm(event, '${type}')">
             `;
 
             data.fields.forEach(field => {
@@ -808,4 +808,132 @@
                 html += `<label for="${field.id}">${field.label}${required}</label>`;
 
                 if (field.type === 'select') {
-                    html += `<select id="${field.id}" ${field.required ?
+                    html += `<select id="${field.id}" ${field.required ? 'required' : ''}>`;
+                    html += `<option value="">— Выберите —</option>`;
+                    field.options.forEach(opt => {
+                        html += `<option value="${opt}">${opt}</option>`;
+                    });
+                    html += `</select>`;
+                } else {
+                    html += `<input type="${field.type}" id="${field.id}" placeholder="${field.placeholder || ''}" ${field.required ? 'required' : ''}>`;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `
+                    <button type="submit" class="btn btn-submit">📩 Отправить заявку</button>
+                </form>
+                <p style="color:#666; font-size:13px; margin-top:15px; text-align:center;">Наш менеджер свяжется с вами</p>
+            `;
+
+            body.innerHTML = html;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО =====
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== ОТПРАВКА ИЗ МОДАЛЬНОГО ОКНА =====
+        function sendForm(event, type) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData();
+
+            // Определяем название услуги
+            const serviceNames = {
+                fences: 'Забор',
+                ogradki: 'Оградки',
+                navesy: 'Автонавес',
+                lestnicy: 'Лестница',
+                dush: 'Дачный душ',
+                svarka: 'Сварочные работы'
+            };
+            const service = serviceNames[type] || 'Заявка';
+
+            // Собираем все данные из формы
+            const inputs = form.querySelectorAll('input, select');
+            let formDataObj = {};
+            inputs.forEach(input => {
+                if (input.value) {
+                    formDataObj[input.id] = input.value;
+                }
+            });
+
+            // Добавляем обязательные поля
+            formDataObj['service'] = service;
+
+            // Отправляем на send.php
+            fetch('/send.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formDataObj)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('✅ Заявка отправлена! Мы свяжемся с вами.');
+                    form.reset();
+                    closeModal();
+                } else {
+                    alert('❌ Ошибка отправки. Попробуйте позже.');
+                }
+            })
+            .catch(error => {
+                alert('❌ Ошибка соединения. Попробуйте позже.');
+            });
+        }
+
+        // ===== ОТПРАВКА ИЗ ФОРМЫ В КОНТАКТАХ =====
+        function sendContactForm(event) {
+            event.preventDefault();
+
+            const formData = {
+                service: 'Общая заявка с сайта',
+                name: document.getElementById('contactName').value,
+                phone: document.getElementById('contactPhone').value,
+                city: document.getElementById('contactCity').value || 'Не указан',
+                comment: document.getElementById('contactComment').value || 'Без комментария'
+            };
+
+            fetch('/send.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('✅ Заявка отправлена! Мы свяжемся с вами.');
+                    document.getElementById('contactForm').reset();
+                } else {
+                    alert('❌ Ошибка отправки. Попробуйте позже.');
+                }
+            })
+            .catch(error => {
+                alert('❌ Ошибка соединения. Попробуйте позже.');
+            });
+        }
+
+        // ===== ЗАКРЫТИЕ ПО ESC =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ===== ЗАКРЫТИЕ ПО КЛИКУ НА ОВЕРЛЕЙ =====
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+
+</body>
+</html>
