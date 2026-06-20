@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стальная Опора | Металлоконструкции в Ярославле</title>
+    <meta name="description" content="Стальная Опора - изготовление заборов, оградок, навесов, лестниц и сварочных работ в Ярославле и Ярославской области.">
+    <meta name="keywords" content="заборы Ярославль, оградки Ярославль, навесы Ярославль, лестницы Ярославль, сварка Ярославль">
+    <style>
+        /* ===== БАЗА ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0b0b0b;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        a {
+            color: #d4a84b;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #f0c86a;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== ШАПКА ===== */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(42, 42, 42, 0.5);
+            position: sticky;
+            top: 0;
+            background: rgba(11, 11, 11, 0.92);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #ffffff;
+        }
+        .logo span {
+            color: #d4a84b;
+        }
+        nav a {
+            margin-left: 28px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #cccccc;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #d4a84b;
+        }
+        .phone-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .phone-header small {
+            font-weight: 400;
+            font-size: 14px;
+            color: #aaaaaa;
+            display: block;
+            text-align: right;
+        }
+
+        /* ===== ГЛАВНЫЙ ЭКРАН С ФОНОМ ===== */
+        .hero {
+            padding: 80px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: 
+                linear-gradient(135deg, rgba(11, 11, 11, 0.88) 0%, rgba(20, 20, 20, 0.75) 100%),
+                radial-gradient(circle at 20% 50%, rgba(212, 168, 75, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(212, 168, 75, 0.05) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 8px);
+            border-bottom: 2px solid #2a2a2a;
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Декоративные линии */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(0deg, rgba(212, 168, 75, 0.03) 0px, rgba(212, 168, 75, 0.03) 1px, transparent 1px, transparent 3px),
+                repeating-linear-gradient(90deg, rgba(212, 168, 75, 0.03) 0px, rgba(212, 168, 75, 0.03) 1px, transparent 1px, transparent 3px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: "Ярославль";
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            font-size: 90px;
+            font-weight: 900;
+            color: rgba(212, 168, 75, 0.05);
+            letter-spacing: 8px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1 1 500px;
+            background: rgba(11, 11, 11, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 45px 50px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 168, 75, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .hero-text h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .hero-text h1 span {
+            color: #d4a84b;
+        }
+        .hero-text p {
+            font-size: 20px;
+            color: #dddddd;
+            max-width: 500px;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .hero-text .location-tag {
+            display: inline-block;
+            background: rgba(212, 168, 75, 0.15);
+            border: 1px solid #d4a84b;
+            color: #d4a84b;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Стильный графический элемент вместо фото */
+        .hero-graphic {
+            flex: 1 1 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 350px;
+            position: relative;
+        }
+
+        .hero-graphic .circle-bg {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(212, 168, 75, 0.15), rgba(212, 168, 75, 0.02));
+            border: 1px solid rgba(212, 168, 75, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        .hero-graphic .circle-bg .icon-big {
+            font-size: 120px;
+            opacity: 0.9;
+            filter: drop-shadow(0 0 40px rgba(212, 168, 75, 0.2));
+        }
+
+        /* Вращающиеся кольца */
+        .hero-graphic .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 168, 75, 0.08);
+            animation: spin 20s linear infinite;
+        }
+        .hero-graphic .ring-1 {
+            width: 300px;
+            height: 300px;
+            animation-duration: 25s;
+        }
+        .hero-graphic .ring-2 {
+            width: 400px;
+            height: 400px;
+            animation-duration: 35s;
+            animation-direction: reverse;
+        }
+        .hero-graphic .ring-3 {
+            width: 200px;
+            height: 200px;
+            animation-duration: 15s;
+            border-color: rgba(212, 168, 75, 0.05);
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .btn {
+            display: inline-block;
+            background: #d4a84b;
+            color: #0b0b0b;
+            padding: 14px 38px;
+            font-weight: 700;
+            font-size: 18px;
+            border-radius: 4px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #f0c86a;
+            color: #0b0b0b;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 168, 75, 0.3);
+        }
+
+        /* ===== УСЛУГИ ===== */
+        .services {
+            padding: 80px 0;
+            background: #0f0f0f;
+        }
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .section-title span {
+            color: #d4a84b;
+        }
+        .section-subtitle {
+            color: #999;
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+        .geo-sub {
+            color: #d4a84b;
+            font-size: 16px;
+            margin-top: -10px;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .service-card {
+            background: #181818;
+            border-radius: 12px;
+            padding: 30px 25px;
+            border: 1px solid #2a2a2a;
+            transition: 0.3s;
+            cursor: pointer;
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #d4a84b;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            background: #1f1f1f;
+        }
+        .service-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .service-card h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .service-card p {
+            color: #aaaaaa;
+            font-size: 15px;
+        }
+        .service-card .click-hint {
+            display: inline-block;
+            margin-top: 15px;
+            color: #d4a84b;
+            font-size: 14px;
+            border: 1px solid #d4a84b;
+            padding: 5px 18px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .service-card:hover .click-hint {
+            background: #d4a84b;
+            color: #0b0b0b;
+        }
+
+        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal {
+            background: #1a1a1a;
+            border: 1px solid #d4a84b;
+            border-radius: 16px;
+            padding: 40px 35px;
+            max-width: 520px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            color: #888;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+        .modal-close:hover {
+            color: #d4a84b;
+        }
+        .modal h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .modal h2 span {
+            color: #d4a84b;
+        }
+        .modal .modal-sub {
+            color: #999;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            color: #dddddd;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .form-group label .required {
+            color: #d4a84b;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #0f0f0f;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            border-color: #d4a84b;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(212, 168, 75, 0.2);
+        }
+        .form-group select option {
+            background: #1a1a1a;
+        }
+
+        .modal .btn-submit {
+            width: 100%;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        /* ===== О КОМПАНИИ ===== */
+        .about {
+            padding: 80px 0;
+            background: #0b0b0b;
+            border-top: 1px solid #1f1f1f;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        .about-grid {
+            display: flex;
+            gap: 50px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1 1 500px;
+        }
+        .about-text h2 {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: #bbbbbb;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+        .about-text .geo-list {
+            list-style: none;
+            padding: 0;
+        }
+        .about-text .geo-list li {
+            padding: 8px 0;
+            color: #dddddd;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .about-text .geo-list li::before {
+            content: "📍 ";
+            color: #d4a84b;
+        }
+
+        /* Графика вместо фото в "О нас" */
+        .about-graphic {
+            flex: 1 1 300px;
+            min-height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(212, 168, 75, 0.05), transparent 70%);
+            border-radius: 12px;
+            border: 1px solid rgba(212, 168, 75, 0.08);
+            position: relative;
+        }
+        .about-graphic .big-icon {
+            font-size: 100px;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 30px rgba(212, 168, 75, 0.1));
+        }
+        .about-graphic::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 168, 75, 0.05);
+            animation: spin 30s linear infinite;
+        }
+        .about-graphic::after {
+            content: '';
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 1px solid rgba(212, 168, 75, 0.03);
+            animation: spin 40s linear infinite reverse;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts {
+            padding: 70px 0;
+            background: #0f0f0f;
+        }
+        .contacts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+        .contacts-info {
+            flex: 1 1 300px;
+        }
+        .contacts-info p {
+            font-size: 18px;
+            margin: 12px 0;
+            color: #dddddd;
+        }
+        .contacts-info strong {
+            color: #ffffff;
+        }
+        .contacts-info .geo-highlight {
+            color: #d4a84b;
+            font-size: 20px;
+            margin: 20px 0 10px;
+        }
+        .contacts-form {
+            flex: 1 1 350px;
+        }
+        .contacts-form input,
+        .contacts-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 16px;
+        }
+        .contacts-form input:focus,
+        .contacts-form textarea:focus {
+            border-color: #d4a84b;
+            outline: none;
+        }
+        .contacts-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* ===== ПОДВАЛ ===== */
+        footer {
+            padding: 30px 0;
+            border-top: 1px solid #1f1f1f;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+        footer span {
+            color: #d4a84b;
+        }
+        footer .geo-footer {
+            color: #888;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        /* ===== АНИМАЦИИ ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav a {
+                margin: 0 12px;
+                font-size: 14px;
+            }
+            .hero-text h1 {
+                font-size: 34px;
+            }
+            .hero {
+                padding: 50px 0 60px;
+            }
+            .hero-text {
+                padding: 25px 20px;
+            }
+            .hero::after {
+                font-size: 40px;
+                right: 10px;
+                bottom: 10px;
+            }
+            .hero-graphic .circle-bg {
+                width: 200px;
+                height: 200px;
+            }
+            .hero-graphic .circle-bg .icon-big {
+                font-size: 70px;
+            }
+            .hero-graphic .ring-1 { width: 180px; height: 180px; }
+            .hero-graphic .ring-2 { width: 240px; height: 240px; }
+            .hero-graphic .ring-3 { width: 120px; height: 120px; }
+            .section-title {
+                font-size: 28px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .contacts-grid {
+                flex-direction: column;
+            }
+            .phone-header small {
+                text-align: center;
+            }
+            .modal {
+                padding: 30px 20px;
+            }
+            .about-graphic .big-icon {
+                font-size: 60px;
+            }
+            .about-graphic {
+                min-height: 200px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 22px;
+            }
+            nav a {
+                font-size: 13px;
+                margin: 0 8px;
+            }
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            .btn {
+                padding: 12px 28px;
+                font-size: 16px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-graphic .circle-bg {
+                width: 160px;
+                height: 160px;
+            }
+            .hero-graphic .circle-bg .icon-big {
+                font-size: 50px;
+            }
+            .hero-graphic .ring-1 { width: 140px; height: 140px; }
+            .hero-graphic .ring-2 { width: 190px; height: 190px; }
+            .hero-graphic .ring-3 { width: 100px; height: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== ШАПКА ===== -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">Стальная <span>Опора</span></div>
+            <nav>
+                <a href="#services">Услуги</a>
+                <a href="#about">О нас</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <div class="phone-header">
+                8 910 822 81 31
+                <small>Работаем в Ярославле и области</small>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== ГЛАВНЫЙ ЭКРАН ===== -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="location-tag">📍 Ярославль • Ярославская область</div>
+                <h1>Металлоконструкции <br><span>для вашего дома</span></h1>
+                <p>Заборы, оградки, навесы, лестницы и не только. Работаем в Ярославле и по всей области.</p>
+                <a href="#services" class="btn">Выбрать услугу</a>
+            </div>
+            <div class="hero-graphic">
+                <div class="circle-bg">
+                    <span class="icon-big">🏗️</span>
+                </div>
+                <div class="ring ring-1"></div>
+                <div class="ring ring-2"></div>
+                <div class="ring ring-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== УСЛУГИ ===== -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Наши <span>услуги</span></h2>
+            <p class="section-subtitle">Нажмите на нужный раздел и оставьте заявку</p>
+            <div class="geo-sub">📍 Работаем по всей Ярославской области</div>
+
+            <div class="services-grid">
+
+                <div class="service-card" onclick="openModal('fences')">
+                    <span class="icon">🏗️</span>
+                    <h3>Заборы</h3>
+                    <p>Выберите материал и размеры</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+                <div class="service-card" onclick="openModal('ogradki')">
+                    <span class="icon">🔲</span>
+                    <h3>Оградки</h3>
+                    <p>Для палисадника, кладбища, детской площадки</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+                <div class="service-card" onclick="openModal('navesy')">
+                    <span class="icon">🚗</span>
+                    <h3>Автонавесы</h3>
+                    <p>Выберите тип и материал</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+                <div class="service-card" onclick="openModal('lestnicy')">
+                    <span class="icon">🪜</span>
+                    <h3>Лестницы</h3>
+                    <p>На 1 или 2 косоурах</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+                <div class="service-card" onclick="openModal('dush')">
+                    <span class="icon">🚿</span>
+                    <h3>Дачные душевые</h3>
+                    <p>Металлические кабинки с баком</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+                <div class="service-card" onclick="openModal('svarka')">
+                    <span class="icon">⚡</span>
+                    <h3>Сварочные работы</h3>
+                    <p>Изготовление и ремонт металлоизделий</p>
+                    <span class="click-hint">Оставить заявку</span>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 40px; padding: 30px; background: #1a1a1a; border-left: 5px solid #d4a84b; border-radius: 8px;">
+                <h4 style="color:#d4a84b; font-size:20px;">Память с уважением</h4>
+                <p style="color:#cccccc;">Изготавливаем <strong>оградки для кладбища</strong> из качественного металла. Работаем на всех кладбищах Ярославля и области.</p>
+            </div>
+
+            <div style="margin-top: 30px; padding: 20px; background: #131313; border-radius: 8px; border: 1px dashed #444; text-align: center; color: #888;">
+                ➕ Дополнительный раздел будет добавлен позже
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== О КОМПАНИИ ===== -->
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Стальная Опора в <span style="color:#d4a84b;">Ярославле</span></h2>
+                <p>Мы — команда сварщиков и монтажников с опытом более 10 лет. Наша специализация — металлоконструкции для дома и дачи.</p>
+                <p>Используем только качественный металл, современное оборудование. Даем гарантию на все конструкции.</p>
+                <p><strong style="color:#d4a84b;">Работаем без посредников — разумные цены напрямую от производителя.</strong></p>
+                <h4 style="color:#d4a84b; margin-top: 25px; margin-bottom: 10px;">География работ:</h4>
+                <ul class="geo-list">
+                    <li>г. Ярославль</li>
+                    <li>г. Рыбинск</li>
+                    <li>г. Переславль-Залесский</li>
+                    <li>г. Углич</li>
+                    <li>г. Ростов Великий</li>
+                    <li>г. Тутаев</li>
+                    <li>Тутаевский, Гаврилов-Ямский, Некрасовский и другие районы области</li>
+                </ul>
+            </div>
+            <div class="about-graphic">
+                <span class="big-icon">🔩</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== КОНТАКТЫ ===== -->
+    <section class="contacts" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с <span>нами</span></h2>
+            <p class="section-subtitle">Приедем на замер в Ярославле и области, рассчитаем стоимость бесплатно</p>
+
+            <div class="contacts-grid">
+                <div class="contacts-info">
+                    <p><strong>Телефон:</strong> 8 910 822 81 31</p>
+                    <p><strong>Email:</strong> StalnayaOpora@yandex.ru</p>
+                    <p><strong>Адрес:</strong> г. Тутаев</p>
+                    <p><strong>Режим работы:</strong> Ежедневно, 9:00 – 20:00</p>
+                    <div class="geo-highlight">📍 Работаем по всей Ярославской области</div>
+                    <p style="color:#d4a84b;">🔹 Выезд на замер бесплатный</p>
+                    <p style="color:#d4a84b;">🔹 Доставка и монтаж в любой город области</p>
+                </div>
+
+                <div class="contacts-form">
+                    <form action="#" method="POST">
+                        <input type="text" placeholder="Ваше имя" required>
+                        <input type="tel" placeholder="Номер телефона" required>
+                        <input type="text" placeholder="Город или район области">
+                        <textarea placeholder="Опишите, что вам нужно..."></textarea>
+                        <button type="submit" class="btn" style="width:100%;">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ПОДВАЛ ===== -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span>Стальная Опора</span> — Металлоконструкции в Ярославле</p>
+            <p class="geo-footer">📍 Работаем в Ярославле, Рыбинске, Переславле-Залесском, Угличе, Тутаеве и по всей Ярославской области</p>
+        </div>
+    </footer>
+
+    <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
+    <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
+        <div class="modal" id="modalContent">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== ДАННЫЕ ДЛЯ МОДАЛЬНЫХ ОКОН =====
+        const modalData = {
+            fences: {
+                title: 'Забор',
+                subtitle: 'Выберите материал и укажите размеры',
+                fields: [
+                    { type: 'select', id: 'material', label: 'Материал', options: ['Поликарбонат', 'Сетка-рабица', 'Штакетник'], required: true },
+                    { type: 'text', id: 'size', label: 'Размеры (длина и высота)', placeholder: 'Например: 12м x 2м', required: true },
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            ogradki: {
+                title: 'Оградки',
+                subtitle: 'Оставьте заявку, и мы подберем оптимальный вариант',
+                fields: [
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            navesy: {
+                title: 'Автонавес',
+                subtitle: 'Выберите тип и материал конструкции',
+                fields: [
+                    { type: 'select', id: 'type', label: 'Тип навеса', options: ['Односкатный', 'Двускатный', 'Арочный'], required: true },
+                    { type: 'select', id: 'material', label: 'Материал кровли', options: ['Поликарбонат', 'Металлочерепица', 'Металлопрофиль', 'Не определился'], required: true },
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            lestnicy: {
+                title: 'Лестница',
+                subtitle: 'Выберите тип лестницы',
+                fields: [
+                    { type: 'select', id: 'type', label: 'Тип лестницы', options: ['Лестница на 1 косоуре
