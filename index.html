@@ -787,6 +787,9 @@
     </div>
 
     <script>
+        // ===== НАСТРОЙКА ПОЧТЫ =====
+        const TO_EMAIL = 'StalnayaOpora@ya.ru';
+
         // ===== ДАННЫЕ ДЛЯ МОДАЛЬНЫХ ОКОН =====
         const modalData = {
             fences: {
@@ -864,4 +867,108 @@
                 html += `<label for="${field.id}">${field.label}${required}</label>`;
 
                 if (field.type === 'select') {
-                    html += `<select id="${field.id}" ${field.required ?
+                    html += `<select id="${field.id}" ${field.required ? 'required' : ''}>`;
+                    html += `<option value="">— Выберите —</option>`;
+                    field.options.forEach(opt => {
+                        html += `<option value="${opt}">${opt}</option>`;
+                    });
+                    html += `</select>`;
+                } else {
+                    html += `<input type="${field.type}" id="${field.id}" placeholder="${field.placeholder || ''}" ${field.required ? 'required' : ''}>`;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `
+                    <button type="submit" class="btn btn-submit">📩 Отправить заявку</button>
+                </form>
+                <p style="color:#666; font-size:13px; margin-top:15px; text-align:center;">Наш менеджер свяжется с вами в ближайшее время</p>
+            `;
+
+            body.innerHTML = html;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // ===== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО =====
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ===== ОТПРАВКА ИЗ МОДАЛЬНОГО ОКНА =====
+        function submitModalForm(event, type) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = {};
+
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
+            const serviceNames = {
+                fences: 'Забор',
+                ogradki: 'Оградки',
+                navesy: 'Автонавес',
+                lestnicy: 'Лестница',
+                dush: 'Дачный душ',
+                svarka: 'Сварочные работы'
+            };
+            data.service = serviceNames[type] || type;
+
+            // Отправляем на почту
+            sendToEmail(data);
+
+            closeModal();
+            alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+        }
+
+        // ===== ОТПРАВКА ИЗ ФОРМЫ В КОНТАКТАХ =====
+        function sendContactForm(event) {
+            event.preventDefault();
+
+            const data = {
+                service: 'Общая заявка с сайта',
+                name: document.getElementById('contactName').value,
+                phone: document.getElementById('contactPhone').value,
+                city: document.getElementById('contactCity').value || 'Не указан',
+                comment: document.getElementById('contactComment').value || 'Без комментария'
+            };
+
+            sendToEmail(data);
+            document.getElementById('contactForm').reset();
+            alert('✅ Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+        }
+
+        // ===== УНИВЕРСАЛЬНАЯ ОТПРАВКА НА ПОЧТУ =====
+        function sendToEmail(data) {
+            const subject = encodeURIComponent('Новая заявка с сайта Стальная Опора');
+            
+            let message = '';
+            for (let [key, value] of Object.entries(data)) {
+                message += `${key}: ${value}\n`;
+            }
+
+            const body = encodeURIComponent(message);
+            const mailtoLink = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+
+            // Открываем почтовый клиент
+            window.location.href = mailtoLink;
+        }
+
+        // ===== ЗАКРЫТИЕ ПО ESC =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ===== ЗАКРЫТИЕ ПО КЛИКУ НА ОВЕРЛЕЙ =====
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+    </script>
+
+</body>
+</html>
