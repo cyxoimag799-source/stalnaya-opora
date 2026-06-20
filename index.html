@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стальная Опора | Металлоконструкции в Ярославле</title>
-    <meta name="description" content="Стальная Опора - изготовление заборов, оградок, навесов, лестниц и сварочных работ в Ярославле и Ярославской области.">
-    <meta name="keywords" content="заборы Ярославль, оградки Ярославль, навесы Ярославль, лестницы Ярославль, сварка Ярославль">
     <style>
-        /* ===== БАЗА ===== */
         * {
             margin: 0;
             padding: 0;
@@ -32,7 +29,6 @@
             padding: 0 20px;
         }
 
-        /* ===== ШАПКА ===== */
         header {
             padding: 20px 0;
             border-bottom: 1px solid rgba(42, 42, 42, 0.5);
@@ -80,7 +76,6 @@
             text-align: right;
         }
 
-        /* ===== ГЛАВНЫЙ ЭКРАН С ФОНОМ ===== */
         .hero {
             padding: 80px 0 100px;
             min-height: 100vh;
@@ -95,8 +90,6 @@
             border-bottom: 2px solid #2a2a2a;
             box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.7);
         }
-
-        /* Декоративные линии */
         .hero::before {
             content: '';
             position: absolute;
@@ -110,7 +103,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .hero::after {
             content: "Ярославль";
             position: absolute;
@@ -123,7 +115,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         .hero-grid {
             display: flex;
             align-items: center;
@@ -133,7 +124,6 @@
             z-index: 1;
             width: 100%;
         }
-
         .hero-text {
             flex: 1 1 500px;
             background: rgba(11, 11, 11, 0.6);
@@ -172,7 +162,6 @@
             margin-bottom: 30px;
             backdrop-filter: blur(4px);
         }
-
         .btn {
             display: inline-block;
             background: #d4a84b;
@@ -192,7 +181,6 @@
             box-shadow: 0 8px 25px rgba(212, 168, 75, 0.3);
         }
 
-        /* ===== СТИЛЬНАЯ ГРАФИКА ВМЕСТО КРАНА (ТЕПЕРЬ ЗАБОР) ===== */
         .hero-graphic {
             flex: 1 1 400px;
             display: flex;
@@ -201,7 +189,6 @@
             min-height: 350px;
             position: relative;
         }
-
         .hero-graphic .circle-bg {
             width: 350px;
             height: 350px;
@@ -214,14 +201,11 @@
             position: relative;
             animation: pulse 4s ease-in-out infinite;
         }
-
         .hero-graphic .circle-bg .icon-big {
             font-size: 120px;
             opacity: 0.9;
             filter: drop-shadow(0 0 40px rgba(212, 168, 75, 0.2));
         }
-
-        /* Вращающиеся кольца */
         .hero-graphic .ring {
             position: absolute;
             border-radius: 50%;
@@ -250,13 +234,11 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
         }
 
-        /* ===== УСЛУГИ ===== */
         .services {
             padding: 80px 0;
             background: #0f0f0f;
@@ -332,7 +314,6 @@
             color: #0b0b0b;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -389,7 +370,6 @@
             font-size: 15px;
             margin-bottom: 25px;
         }
-
         .form-group {
             margin-bottom: 18px;
         }
@@ -423,7 +403,6 @@
         .form-group select option {
             background: #1a1a1a;
         }
-
         .modal .btn-submit {
             width: 100%;
             padding: 16px;
@@ -432,7 +411,6 @@
             margin-top: 10px;
         }
 
-        /* ===== О КОМПАНИИ ===== */
         .about {
             padding: 80px 0;
             background: #0b0b0b;
@@ -470,7 +448,6 @@
             content: "📍 ";
             color: #d4a84b;
         }
-
         .about-graphic {
             flex: 1 1 300px;
             min-height: 300px;
@@ -506,7 +483,6 @@
             animation: spin 40s linear infinite reverse;
         }
 
-        /* ===== КОНТАКТЫ ===== */
         .contacts {
             padding: 70px 0;
             background: #0f0f0f;
@@ -557,7 +533,6 @@
             resize: vertical;
         }
 
-        /* ===== ПОДВАЛ ===== */
         footer {
             padding: 30px 0;
             border-top: 1px solid #1f1f1f;
@@ -574,7 +549,6 @@
             font-size: 13px;
         }
 
-        /* ===== АНИМАЦИИ ===== */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -583,16 +557,7 @@
             from { transform: translateY(40px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 768px) {
             .header-inner {
                 flex-direction: column;
@@ -684,7 +649,6 @@
 </head>
 <body>
 
-    <!-- ===== ШАПКА ===== -->
     <header>
         <div class="container header-inner">
             <div class="logo">Стальная <span>Опора</span></div>
@@ -700,7 +664,6 @@
         </div>
     </header>
 
-    <!-- ===== ГЛАВНЫЙ ЭКРАН С ЗАБОРОМ (ВМЕСТО КРАНА) ===== -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-text">
@@ -709,10 +672,8 @@
                 <p>Заборы, оградки, навесы, лестницы и не только. Работаем в Ярославле и по всей области.</p>
                 <a href="#services" class="btn">Выбрать услугу</a>
             </div>
-            <!-- ===== НОВАЯ ГРАФИКА: ЗАБОР ВМЕСТО КРАНА ===== -->
             <div class="hero-graphic">
                 <div class="circle-bg">
-                    <!-- ЗДЕСЬ ТЕПЕРЬ ДОМ С ЗАБОРОМ -->
                     <span class="icon-big">🏠</span>
                 </div>
                 <div class="ring ring-1"></div>
@@ -722,71 +683,59 @@
         </div>
     </section>
 
-    <!-- ===== УСЛУГИ ===== -->
     <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">Наши <span>услуги</span></h2>
             <p class="section-subtitle">Нажмите на нужный раздел и оставьте заявку</p>
             <div class="geo-sub">📍 Работаем по всей Ярославской области</div>
-
             <div class="services-grid">
-
                 <div class="service-card" onclick="openModal('fences')">
                     <span class="icon">🏗️</span>
                     <h3>Заборы</h3>
                     <p>Выберите материал и размеры</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
                 <div class="service-card" onclick="openModal('ogradki')">
                     <span class="icon">🔲</span>
                     <h3>Оградки</h3>
                     <p>Для палисадника, кладбища, детской площадки</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
                 <div class="service-card" onclick="openModal('navesy')">
                     <span class="icon">🚗</span>
                     <h3>Автонавесы</h3>
                     <p>Выберите тип и материал</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
                 <div class="service-card" onclick="openModal('lestnicy')">
                     <span class="icon">🪜</span>
                     <h3>Лестницы</h3>
                     <p>На 1 или 2 косоурах</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
                 <div class="service-card" onclick="openModal('dush')">
                     <span class="icon">🚿</span>
                     <h3>Дачные душевые</h3>
                     <p>Металлические кабинки с баком</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
                 <div class="service-card" onclick="openModal('svarka')">
                     <span class="icon">⚡</span>
                     <h3>Сварочные работы</h3>
                     <p>Изготовление и ремонт металлоизделий</p>
                     <span class="click-hint">Оставить заявку</span>
                 </div>
-
             </div>
-
             <div style="margin-top: 40px; padding: 30px; background: #1a1a1a; border-left: 5px solid #d4a84b; border-radius: 8px;">
                 <h4 style="color:#d4a84b; font-size:20px;">Память с уважением</h4>
                 <p style="color:#cccccc;">Изготавливаем <strong>оградки для кладбища</strong> из качественного металла. Работаем на всех кладбищах Ярославля и области.</p>
             </div>
-
             <div style="margin-top: 30px; padding: 20px; background: #131313; border-radius: 8px; border: 1px dashed #444; text-align: center; color: #888;">
                 ➕ Дополнительный раздел будет добавлен позже
             </div>
         </div>
     </section>
 
-    <!-- ===== О КОМПАНИИ ===== -->
     <section class="about" id="about">
         <div class="container about-grid">
             <div class="about-text">
@@ -798,7 +747,6 @@
                 <ul class="geo-list">
                     <li>г. Ярославль</li>
                     <li>г. Рыбинск</li>
-                    <li>г. Углич</li>
                     <li>г. Тутаев</li>
                     <li>Тутаевский, Гаврилов-Ямский, Некрасовский и другие районы области</li>
                 </ul>
@@ -809,12 +757,10 @@
         </div>
     </section>
 
-    <!-- ===== КОНТАКТЫ ===== -->
     <section class="contacts" id="contacts">
         <div class="container">
             <h2 class="section-title">Свяжитесь с <span>нами</span></h2>
             <p class="section-subtitle">Приедем на замер в Ярославле и области, рассчитаем стоимость бесплатно</p>
-
             <div class="contacts-grid">
                 <div class="contacts-info">
                     <p><strong>Телефон:</strong> 8 910 822 81 31</p>
@@ -825,7 +771,6 @@
                     <p style="color:#d4a84b;">🔹 Выезд на замер бесплатный</p>
                     <p style="color:#d4a84b;">🔹 Доставка и монтаж в любой город области</p>
                 </div>
-
                 <div class="contacts-form">
                     <form action="#" method="POST">
                         <input type="text" placeholder="Ваше имя" required>
@@ -839,15 +784,13 @@
         </div>
     </section>
 
-    <!-- ===== ПОДВАЛ ===== -->
     <footer>
         <div class="container">
             <p>© 2026 <span>Стальная Опора</span> — Металлоконструкции в Ярославле</p>
-            <p class="geo-footer">📍 Работаем в Ярославле, Рыбинске, Переславле-Залесском, Угличе, Тутаеве и по всей Ярославской области</p>
+            <p class="geo-footer">📍 Работаем в Ярославле, Рыбинске, Тутаеве и по всей Ярославской области</p>
         </div>
     </footer>
 
-    <!-- ===== МОДАЛЬНЫЕ ОКНА ===== -->
     <div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this) closeModal()">
         <div class="modal" id="modalContent">
             <button class="modal-close" onclick="closeModal()">✕</button>
@@ -856,7 +799,6 @@
     </div>
 
     <script>
-        // ===== ДАННЫЕ ДЛЯ МОДАЛЬНЫХ ОКОН =====
         const modalData = {
             fences: {
                 title: 'Забор',
@@ -883,4 +825,50 @@
                     { type: 'select', id: 'type', label: 'Тип навеса', options: ['Односкатный', 'Двускатный', 'Арочный'], required: true },
                     { type: 'select', id: 'material', label: 'Материал кровли', options: ['Поликарбонат', 'Металлочерепица', 'Металлопрофиль', 'Не определился'], required: true },
                     { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
-                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            lestnicy: {
+                title: 'Лестница',
+                subtitle: 'Выберите тип лестницы',
+                fields: [
+                    { type: 'select', id: 'type', label: 'Тип лестницы', options: ['Лестница на 1 косоуре', 'Лестница на 2 косоурах'], required: true },
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            dush: {
+                title: 'Дачный душ',
+                subtitle: 'Металлическая кабинка с баком для воды',
+                fields: [
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            },
+            svarka: {
+                title: 'Сварочные работы',
+                subtitle: 'Изготовление и ремонт металлоизделий на заказ',
+                fields: [
+                    { type: 'text', id: 'name', label: 'Ваше имя', placeholder: 'Введите ваше имя', required: true },
+                    { type: 'tel', id: 'phone', label: 'Номер телефона', placeholder: '+7 (___)-___-__-__', required: true }
+                ]
+            }
+        };
+
+        function openModal(type) {
+            const data = modalData[type];
+            if (!data) return;
+            const overlay = document.getElementById('modalOverlay');
+            const body = document.getElementById('modalBody');
+            let html = `
+                <h2>${data.title} <span>▸ заявка</span></h2>
+                <p class="modal-sub">${data.subtitle}</p>
+                <form id="modalForm" onsubmit="submitModalForm(event, '${type}')">
+            `;
+            data.fields.forEach(field => {
+                const required = field.required ? ' <span class="required">*</span>' : '';
+                html += `<div class="form-group">`;
+                html += `<label for="${field.id}">${field.label}${required}</label>`;
+                if (field.type === 'select') {
+                    html += `<select id="${field.id}" ${field.required ? 'required' : ''}>`;
+                    html += `<option value="">— Выберите
