@@ -838,14 +838,18 @@
             document.body.style.overflow = 'auto';
         }
 
-        // ===== ОТПРАВКА ИЗ МОДАЛЬНОГО ОКНА =====
+        // ===== ОТПРАВКА ИЗ МОДАЛЬНОГО ОКНА (ЧЕРЕЗ СЕРВЕР) =====
         function sendForm(event, type) {
             event.preventDefault();
 
             const form = event.target;
-            const formData = new FormData();
+            const formData = new FormData(form);
+            const data = {};
 
-            // Определяем название услуги
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+
             const serviceNames = {
                 fences: 'Забор',
                 ogradki: 'Оградки',
@@ -854,31 +858,19 @@
                 dush: 'Дачный душ',
                 svarka: 'Сварочные работы'
             };
-            const service = serviceNames[type] || 'Заявка';
+            data.service = serviceNames[type] || 'Заявка';
 
-            // Собираем все данные из формы
-            const inputs = form.querySelectorAll('input, select');
-            let formDataObj = {};
-            inputs.forEach(input => {
-                if (input.value) {
-                    formDataObj[input.id] = input.value;
-                }
-            });
-
-            // Добавляем обязательные поля
-            formDataObj['service'] = service;
-
-            // Отправляем на send.php
-            fetch('/send.php', {
+            // ОТПРАВКА НА ВАШ ХОСТИНГ
+            fetch('https://stalnayaopora.ru/send.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams(formDataObj)
+                body: new URLSearchParams(data)
             })
             .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
+            .then(result => {
+                if (result.status === 'success') {
                     alert('✅ Заявка отправлена! Мы свяжемся с вами.');
                     form.reset();
                     closeModal();
@@ -886,16 +878,16 @@
                     alert('❌ Ошибка отправки. Попробуйте позже.');
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 alert('❌ Ошибка соединения. Попробуйте позже.');
             });
         }
 
-        // ===== ОТПРАВКА ИЗ ФОРМЫ В КОНТАКТАХ =====
+        // ===== ОТПРАВКА ИЗ ФОРМЫ В КОНТАКТАХ (ЧЕРЕЗ СЕРВЕР) =====
         function sendContactForm(event) {
             event.preventDefault();
 
-            const formData = {
+            const data = {
                 service: 'Общая заявка с сайта',
                 name: document.getElementById('contactName').value,
                 phone: document.getElementById('contactPhone').value,
@@ -903,23 +895,23 @@
                 comment: document.getElementById('contactComment').value || 'Без комментария'
             };
 
-            fetch('/send.php', {
+            fetch('https://stalnayaopora.ru/send.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: new URLSearchParams(formData)
+                body: new URLSearchParams(data)
             })
             .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
+            .then(result => {
+                if (result.status === 'success') {
                     alert('✅ Заявка отправлена! Мы свяжемся с вами.');
                     document.getElementById('contactForm').reset();
                 } else {
                     alert('❌ Ошибка отправки. Попробуйте позже.');
                 }
             })
-            .catch(error => {
+            .catch(() => {
                 alert('❌ Ошибка соединения. Попробуйте позже.');
             });
         }
