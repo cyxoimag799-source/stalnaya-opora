@@ -170,7 +170,6 @@
         </div>
     </footer>
 
-    <!-- Модальное окно -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal" id="modalContent">
             <button class="modal-close" onclick="closeModal()">✕</button>
@@ -179,10 +178,6 @@
     </div>
 
     <script>
-        // ===== ВАШИ ДАННЫЕ (уже вставлены!) =====
-        const BOT_TOKEN = '8623573320:AAETad_eS5XIlX3iZ6x16a_EeKYXyF1QgmM';
-        const CHAT_ID = '822346576';   // ← ваш Chat ID
-
         // ===== ДАННЫЕ ДЛЯ МОДАЛОК =====
         const modalData = {
             fences: {
@@ -276,15 +271,6 @@
             document.getElementById('modalOverlay').classList.remove('active');
         }
 
-        // ===== ОТПРАВКА В TELEGRAM =====
-        function sendToTelegram(text) {
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
-            });
-        }
-
         // ===== ОТПРАВКА ИЗ МОДАЛКИ =====
         function sendForm(event, type) {
             event.preventDefault();
@@ -295,37 +281,45 @@
             }
             data.service = serviceNames[type] || 'Заявка';
 
-            let msg = `🔹 <b>Новая заявка!</b>\n`;
-            msg += `📌 Услуга: ${data.service}\n`;
-            msg += `👤 Имя: ${data.name || '—'}\n`;
-            msg += `📞 Телефон: ${data.phone || '—'}\n`;
-            if (data.size) msg += `📏 Размеры: ${data.size}\n`;
-            if (data.material) msg += `🧱 Материал: ${data.material}\n`;
-            if (data.type) msg += `🏗️ Тип: ${data.type}\n`;
-
-            sendToTelegram(msg);
-            alert('✅ Заявка отправлена!');
-            form.reset();
-            closeModal();
+            // Отправка через send.php на хостинге
+            fetch('http://stalnayaopora.ru/send.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(data)
+            })
+            .then(() => {
+                alert('✅ Заявка отправлена! Мы свяжемся с вами.');
+                form.reset();
+                closeModal();
+            })
+            .catch(() => {
+                alert('❌ Ошибка отправки. Попробуйте позже.');
+            });
         }
 
         // ===== ОТПРАВКА ИЗ КОНТАКТОВ =====
         function sendContactForm(event) {
             event.preventDefault();
-            const name = document.getElementById('contactName').value;
-            const phone = document.getElementById('contactPhone').value;
-            const city = document.getElementById('contactCity').value || '—';
-            const comment = document.getElementById('contactComment').value || '—';
+            const data = {
+                service: 'Общая заявка с сайта',
+                name: document.getElementById('contactName').value,
+                phone: document.getElementById('contactPhone').value,
+                city: document.getElementById('contactCity').value || '—',
+                comment: document.getElementById('contactComment').value || '—'
+            };
 
-            let msg = `🔹 <b>Новая заявка с сайта!</b>\n`;
-            msg += `👤 Имя: ${name}\n`;
-            msg += `📞 Телефон: ${phone}\n`;
-            msg += `📍 Город: ${city}\n`;
-            msg += `💬 Комментарий: ${comment}\n`;
-
-            sendToTelegram(msg);
-            alert('✅ Заявка отправлена!');
-            document.getElementById('contactForm').reset();
+            fetch('http://stalnayaopora.ru/send.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(data)
+            })
+            .then(() => {
+                alert('✅ Заявка отправлена! Мы свяжемся с вами.');
+                document.getElementById('contactForm').reset();
+            })
+            .catch(() => {
+                alert('❌ Ошибка отправки. Попробуйте позже.');
+            });
         }
 
         // ===== ЗАКРЫТИЕ ПО ESC =====
