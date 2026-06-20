@@ -508,9 +508,6 @@
             font-size: 20px;
             margin: 20px 0 10px;
         }
-        .contacts-form {
-            flex: 1 1 350px;
-        }
         .contacts-form input,
         .contacts-form textarea {
             width: 100%;
@@ -754,7 +751,7 @@
             <div class="contacts-grid">
                 <div class="contacts-info">
                     <p><strong>Телефон:</strong> 8 910 822 81 31</p>
-                    <p><strong>Email:</strong> StalnayaOpora@yandex.ru</p>
+                    <p><strong>Email:</strong> StalnayaOpora@ya.ru</p>
                     <p><strong>Адрес:</strong> г. Тутаев</p>
                     <p><strong>Режим работы:</strong> Ежедневно, 9:00 – 20:00</p>
                     <div class="geo-highlight">📍 Работаем по всей Ярославской области</div>
@@ -762,12 +759,12 @@
                     <p style="color:#d4a84b;">🔹 Доставка и монтаж в любой город области</p>
                 </div>
                 <div class="contacts-form">
-                    <form action="#" method="POST">
-                        <input type="text" placeholder="Ваше имя" required>
-                        <input type="tel" placeholder="Номер телефона" required>
-                        <input type="text" placeholder="Город или район области">
-                        <textarea placeholder="Опишите, что вам нужно..."></textarea>
-                        <button type="submit" class="btn" style="width:100%;">Отправить заявку</button>
+                    <form id="contactForm" onsubmit="sendContactForm(event)">
+                        <input type="text" id="contactName" placeholder="Ваше имя" required>
+                        <input type="tel" id="contactPhone" placeholder="Номер телефона" required>
+                        <input type="text" id="contactCity" placeholder="Город или район области">
+                        <textarea id="contactComment" placeholder="Опишите, что вам нужно..."></textarea>
+                        <button type="submit" class="btn" style="width:100%;">📩 Отправить заявку</button>
                     </form>
                 </div>
             </div>
@@ -867,79 +864,4 @@
                 html += `<label for="${field.id}">${field.label}${required}</label>`;
 
                 if (field.type === 'select') {
-                    html += `<select id="${field.id}" ${field.required ? 'required' : ''}>`;
-                    html += `<option value="">— Выберите —</option>`;
-                    field.options.forEach(opt => {
-                        html += `<option value="${opt}">${opt}</option>`;
-                    });
-                    html += `</select>`;
-                } else {
-                    html += `<input type="${field.type}" id="${field.id}" placeholder="${field.placeholder || ''}" ${field.required ? 'required' : ''}>`;
-                }
-
-                html += `</div>`;
-            });
-
-            html += `
-                    <button type="submit" class="btn btn-submit">📩 Отправить заявку</button>
-                </form>
-                <p style="color:#666; font-size:13px; margin-top:15px; text-align:center;">Наш менеджер свяжется с вами в ближайшее время</p>
-            `;
-
-            body.innerHTML = html;
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // ===== ЗАКРЫТЬ МОДАЛЬНОЕ ОКНО =====
-        function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // ===== ОТПРАВКА ФОРМЫ =====
-        function submitModalForm(event, type) {
-            event.preventDefault();
-
-            const form = event.target;
-            const formData = new FormData(form);
-            const data = {};
-
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-
-            const serviceNames = {
-                fences: 'Забор',
-                ogradki: 'Оградки',
-                navesy: 'Автонавес',
-                lestnicy: 'Лестница',
-                dush: 'Дачный душ',
-                svarka: 'Сварочные работы'
-            };
-            data.service = serviceNames[type] || type;
-
-            console.log('📩 Заявка:', data);
-
-            alert('✅ Заявка отправлена! \n\n' +
-                'Услуга: ' + data.service + '\n' +
-                'Имя: ' + (data.name || '—') + '\n' +
-                'Телефон: ' + (data.phone || '—') + '\n\n' +
-                'Мы свяжемся с вами в ближайшее время!');
-
-            closeModal();
-        }
-
-        // ===== ЗАКРЫТИЕ ПО ESC =====
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeModal();
-        });
-
-        // ===== ЗАКРЫТИЕ ПО КЛИКУ НА ОВЕРЛЕЙ =====
-        document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
-        });
-    </script>
-
-</body>
-</html>
+                    html += `<select id="${field.id}" ${field.required ?
